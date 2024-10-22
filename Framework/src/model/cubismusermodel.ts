@@ -302,7 +302,7 @@ export class CubismUserModel {
    * レンダラを作成して初期化を実行する
    * @param maskBufferCount バッファの生成数
    */
-  public createRenderer(maskBufferCount = 1): void {
+  public createRenderer(maskBufferCount = 2): void {
     if (this._renderer) {
       this.deleteRenderer();
     }

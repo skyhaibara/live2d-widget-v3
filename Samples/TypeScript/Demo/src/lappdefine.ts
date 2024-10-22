@@ -111,5 +111,4 @@ export function initDefine(config: DefineConfig) {
   ResourcesPath = config.resourcePath;
   ModelDir = config.modelDir;
   ModelDirSize = config.modelDirSize;
-  CanvasSize = { width: 300, height: 300 };
 }
