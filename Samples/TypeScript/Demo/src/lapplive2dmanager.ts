@@ -215,4 +215,19 @@ export class LAppLive2DManager {
     LAppPal.printMessage('Motion Finished:');
     console.log(self);
   };
+
+  /**
+   * 加载模型
+   * @param modelName
+   */
+  public loadModel(modelName: string) {
+    // 拼接模型路径和模型名称
+    const modelPath: string = LAppDefine.ResourcesPath + modelName + '/';
+    const modelJsonName: string = modelName + '.model3.json';
+    // 释放全部模型
+    this.releaseAllModel();
+    // 数组添加新的模型
+    this._models.pushBack(new LAppModel());
+    this._models.at(0).loadAssets(modelPath, modelJsonName);
+  }
 }

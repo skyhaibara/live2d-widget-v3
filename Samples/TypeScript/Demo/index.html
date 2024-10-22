@@ -9,11 +9,15 @@
         margin: 0;
         overflow: hidden;
     }
-    canvas {
-        width: 100vw;
-        height: 100vh;
-        display: block;
+
+    body {
+      background: antiquewhite;
     }
+    /*canvas {*/
+    /*    width: 100vw;*/
+    /*    height: 100vh;*/
+    /*    display: block;*/
+    /*}*/
   </style>
   <!-- Live2DCubismCore script -->
   <script src = "./Core/live2dcubismcore.js"></script>
@@ -21,5 +25,20 @@
   <script src = "./src/main.ts" type="module"></script>
 </head>
 <body>
+  <button id="myButton">这是按钮啊</button>
+  <div class="live2d-main">
+    <div class="live2d-tips"></div>
+    <!-- 这里可以定义画布的大小位置 -->
+    <canvas id="live2d" width="300" height="300" class="live2d"></canvas>
+<!--    <div class="tool">-->
+<!--      <span class="fui-home"></span>-->
+<!--      <span class="fui-chat"></span>-->
+<!--      <span class="fui-eye"></span>-->
+<!--      <span class="fui-user"></span>-->
+<!--      <span class="fui-photo"></span>-->
+<!--      <span class="fui-info-circle"></span>-->
+<!--      <span class="fui-cross"></span>-->
+<!--    </div>-->
+  </div>
 </body>
 </html>

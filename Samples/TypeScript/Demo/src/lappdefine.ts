@@ -12,7 +12,7 @@ import { LogLevel } from '@framework/live2dcubismframework';
  */
 
 // Canvas width and height pixel values, or dynamic screen size ('auto').
-export const CanvasSize: { width: number; height: number } | 'auto' = 'auto';
+export let CanvasSize: { width: number; height: number } | 'auto' = 'auto';
 
 // 画面
 export const ViewScale = 1.0;
@@ -30,7 +30,7 @@ export const ViewLogicalMaxBottom = -2.0;
 export const ViewLogicalMaxTop = 2.0;
 
 // 相対パス
-export const ResourcesPath = '../../Resources/';
+export let ResourcesPath = '../../Resources/';
 
 // モデルの後ろにある背景の画像ファイル
 export const BackImageName = 'back_class_normal.png';
@@ -44,7 +44,7 @@ export const PowerImageName = 'CloseNormal.png';
 // モデル定義---------------------------------------------
 // モデルを配置したディレクトリ名の配列
 // ディレクトリ名とmodel3.jsonの名前を一致させておくこと
-export const ModelDir: string[] = [
+export let ModelDir: string[] = [
   'Haru',
   'Hiyori',
   'Mark',
@@ -53,7 +53,7 @@ export const ModelDir: string[] = [
   'Mao',
   'Wanko'
 ];
-export const ModelDirSize: number = ModelDir.length;
+export let ModelDirSize: number = ModelDir.length;
 
 // 外部定義ファイル（json）と合わせる
 export const MotionGroupIdle = 'Idle'; // アイドリング
@@ -82,3 +82,34 @@ export const CubismLoggingLevel: LogLevel = LogLevel.LogLevel_Verbose;
 // デフォルトのレンダーターゲットサイズ
 export const RenderTargetWidth = 1900;
 export const RenderTargetHeight = 1000;
+
+/**
+ * 定义配置类
+ */
+export class DefineConfig {
+  // 资源路径
+  resourcePath: string;
+
+  // 模型文件
+  modelDir: string[];
+
+  // 模型数量
+  modelDirSize: number;
+
+  constructor(resourcePath: string, modelDir: string[]) {
+    this.resourcePath = resourcePath;
+    this.modelDir = modelDir;
+    this.modelDirSize = modelDir.length;
+  }
+}
+
+/**
+ * 定义初始化
+ * @param config
+ */
+export function initDefine(config: DefineConfig) {
+  ResourcesPath = config.resourcePath;
+  ModelDir = config.modelDir;
+  ModelDirSize = config.modelDirSize;
+  CanvasSize = { width: 300, height: 300 };
+}
