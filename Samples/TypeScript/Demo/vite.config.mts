@@ -10,7 +10,7 @@ export default defineConfig((env: ConfigEnv): UserConfig => {
     base: '/',
     publicDir: './public',
     resolve: {
-      extensions: ['.ts', '.js'],
+      extensions: ['.ts', '.waifu-tips'],
       alias: {
         '@framework': path.resolve(__dirname, '../../../Framework/src'),
       }

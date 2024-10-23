@@ -1,26 +1,36 @@
 import showMessage from "./message.js";
-import randomSelection from "./utils.js";
 
 class Model {
     constructor(config) {
         let { cdnPath, switchType } = config;
         this.cdnPath = cdnPath;
-        this.isRandomSwitch = switchType === 'order'
+        this.isOrderSwitch = switchType === 'order'
     }
 
+    /**
+     * 加载模型列表
+     * @returns {Promise<void>}
+     */
     async loadModelList() {
         const response = await fetch(`${this.cdnPath}model_list.json`);
         this.modelList = await response.json();
     }
 
+    /**
+     * 加载模型
+     * @param modelId 模型id
+     * @param modelTexturesId 模型皮肤id
+     * @param message 消息
+     * @returns {Promise<void>}
+     */
     async loadModel(modelId, modelTexturesId, message) {
         localStorage.setItem("modelId", modelId);
         localStorage.setItem("modelTexturesId", modelTexturesId);
         showMessage(message, 4000, 10);
         if (!this.modelList) await this.loadModelList();
-
-        const target = randomSelection(this.modelList.models[modelId]);
-        loadlive2d("live2d", `${this.cdnPath}model/${target}/index.json`);
+        const target = this.modelList.models[modelId][modelTexturesId];
+        // TODO: 调用sdk加载模型
+        // loadlive2d("live2d", `${this.cdnPath}model/${target}/index.json`);
     }
 
     /**
@@ -28,12 +38,17 @@ class Model {
      * @returns {Promise<void>}
      */
     async switchTextures() {
-        const modelId = localStorage.getItem("modelId"),
-            modelTexturesId = localStorage.getItem("modelTexturesId");
+        const modelId = localStorage.getItem("modelId");
+        let modelTexturesId = localStorage.getItem("modelTexturesId");
         if (!this.modelList) await this.loadModelList();
-        const target = randomSelection(this.modelList.models[modelId]);
-        loadlive2d("live2d", `${this.cdnPath}model/${target}/index.json`);
-        showMessage("我的新衣服好看嘛？", 4000, 10);
+        const textureLength = this.modelList[modelId].length;
+        if (this.isOrderSwitch) {
+            modelTexturesId = (modelTexturesId + 1) % textureLength;
+        } else {
+            modelTexturesId = Math.floor(Math.random() * textureLength)
+        }
+        // 加载模型
+        this.loadModel(modelId, modelTexturesId, "我的新衣服好看嘛？")
     }
 
     /**
