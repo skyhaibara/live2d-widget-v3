@@ -12,6 +12,8 @@ function loadWidget(config) {
             <canvas id="live2d" width="800" height="800"></canvas>
             <div id="waifu-tool"></div>
         </div>`);
+    // 初始化live2d
+    window.live2d.init()
     // https://stackoverflow.com/questions/24148403/trigger-css-transition-on-appended-element
     setTimeout(() => {
         document.getElementById("waifu").style.bottom = 0;

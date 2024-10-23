@@ -64,19 +64,25 @@ button.addEventListener('click', () => {
 
 // declare global {
 //   interface Window {
-//     live2dv4: any;
-//     downloadCap: any;
-//     webpReady: any;
+//     live2d: any;
 //   }
 // }
-// window.addEventListener('load', () => {
-//   fetch(
-//     'https://cdn.jsdelivr.net/gh/letere-gzj/hugo-static-resource@main/live2d/model_list.json'
-//   ).then(data => {
-//     console.log(data.json());
-//   });
-// });
-// window.live2dv4 = window.live2dv4 || {};
-// window.live2dv4.init = (cdnPath: string): void => {
 //
+// window.live2d = window.live2d || {};
+// // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+// window.live2d.init = () => {
+//   // 参数初始化
+//   const defineConfig = new LAppDefine.DefineConfig('../../Resources/', [
+//     'Wanko'
+//   ]);
+//   LAppDefine.initDefine(defineConfig);
+//   // Initialize WebGL and create the application instance
+//   if (
+//     !LAppGlManager.getInstance() ||
+//     !LAppDelegate.getInstance().initialize()
+//   ) {
+//     return;
+//   }
+//
+//   LAppDelegate.getInstance().run();
 // };

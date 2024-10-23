@@ -52,7 +52,7 @@ export class LAppDelegate {
    */
   public initialize(): boolean {
     // キャンバスを DOM に追加
-    document.body.appendChild(canvas);
+    // document.body.appendChild(canvas);
 
     if (LAppDefine.CanvasSize === 'auto') {
       this._resizeCanvas();

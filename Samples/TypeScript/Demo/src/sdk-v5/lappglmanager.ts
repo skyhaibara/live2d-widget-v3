@@ -40,8 +40,8 @@ export class LAppGlManager {
 
   constructor() {
     // キャンバスの作成
-    canvas = document.createElement('canvas');
-    // canvas = <HTMLCanvasElement>document.getElementById('live2d'); // index.html中的id为live2d的画布
+    // canvas = document.createElement('canvas');
+    canvas = <HTMLCanvasElement>document.getElementById('live2d'); // index.html中的id为live2d的画布
 
     // glコンテキストを初期化
     // @ts-ignore
