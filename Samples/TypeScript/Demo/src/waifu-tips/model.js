@@ -29,8 +29,7 @@ class Model {
         showMessage(message, 4000, 10);
         if (!this.modelList) await this.loadModelList();
         const target = this.modelList.models[modelId][modelTexturesId];
-        // TODO: 调用sdk加载模型
-        // loadlive2d("live2d", `${this.cdnPath}model/${target}/index.json`);
+        window.live2d.loadModel(target)
     }
 
     /**

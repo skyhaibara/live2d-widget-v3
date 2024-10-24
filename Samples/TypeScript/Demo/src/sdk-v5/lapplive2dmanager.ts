@@ -153,7 +153,9 @@ export class LAppLive2DManager {
           projection.multiplyByMatrix(this._viewMatrix);
         }
       }
-
+      // 设置自定义配置
+      projection.scale(model._scale, model._scale);
+      projection.translate(model._translateX, model._translateY);
       model.update();
       model.draw(projection); // 参照渡しなのでprojectionは変質する。
     }
@@ -204,7 +206,7 @@ export class LAppLive2DManager {
     this._viewMatrix = new CubismMatrix44();
     this._models = new csmVector<LAppModel>();
     this._sceneIndex = 0;
-    this.changeScene(this._sceneIndex);
+    // this.changeScene(this._sceneIndex);
   }
 
   _viewMatrix: CubismMatrix44; // モデル描画に用いるview行列

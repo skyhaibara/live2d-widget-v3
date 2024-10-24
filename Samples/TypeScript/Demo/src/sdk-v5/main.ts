@@ -13,48 +13,39 @@ import { LAppLive2DManager } from './lapplive2dmanager';
 /**
  * ブラウザロード後の処理
  */
-window.addEventListener(
-  'load',
-  (): void => {
-    // 参数初始化
-    const defineConfig = new LAppDefine.DefineConfig('../../Resources/', [
-      'Wanko'
-    ]);
-    LAppDefine.initDefine(defineConfig);
-    // Initialize WebGL and create the application instance
-    if (
-      !LAppGlManager.getInstance() ||
-      !LAppDelegate.getInstance().initialize()
-    ) {
-      return;
-    }
-
-    LAppDelegate.getInstance().run();
-  },
-  { passive: true }
-);
-
-/**
- * 終了時の処理
- */
-window.addEventListener(
-  'beforeunload',
-  (): void => LAppDelegate.releaseInstance(),
-  { passive: true }
-);
-
-/**
- * Process when changing screen size.
- */
-window.addEventListener(
-  'resize',
-  () => {
-    if (LAppDefine.CanvasSize === 'auto') {
-      LAppDelegate.getInstance().onResize();
-    }
-  },
-  { passive: true }
-);
+// window.addEventListener(
+//   'load',
+//   (): void => {
+//     // 参数初始化
+//     const defineConfig = new LAppDefine.DefineConfig('../../Resources/', [
+//       'Wanko'
+//     ]);
+//     LAppDefine.initDefine(defineConfig);
+//     // Initialize WebGL and create the application instance
+//     if (
+//       !LAppGlManager.getInstance() ||
+//       !LAppDelegate.getInstance().initialize()
+//     ) {
+//       return;
+//     }
+//
+//     LAppDelegate.getInstance().run();
+//   },
+//   { passive: true }
+// );
+//
+// /**
+//  * Process when changing screen size.
+//  */
+// window.addEventListener(
+//   'resize',
+//   () => {
+//     if (LAppDefine.CanvasSize === 'auto') {
+//       LAppDelegate.getInstance().onResize();
+//     }
+//   },
+//   { passive: true }
+// );
 
 const button = document.getElementById('myButton');
 button.addEventListener('click', () => {
@@ -62,27 +53,43 @@ button.addEventListener('click', () => {
   LAppLive2DManager.getInstance().loadModel('Rice');
 });
 
-// declare global {
-//   interface Window {
-//     live2d: any;
-//   }
-// }
-//
-// window.live2d = window.live2d || {};
-// // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-// window.live2d.init = () => {
-//   // 参数初始化
-//   const defineConfig = new LAppDefine.DefineConfig('../../Resources/', [
-//     'Wanko'
-//   ]);
-//   LAppDefine.initDefine(defineConfig);
-//   // Initialize WebGL and create the application instance
-//   if (
-//     !LAppGlManager.getInstance() ||
-//     !LAppDelegate.getInstance().initialize()
-//   ) {
-//     return;
-//   }
-//
-//   LAppDelegate.getInstance().run();
-// };
+declare global {
+  interface Window {
+    live2d: any;
+  }
+}
+
+window.live2d = window.live2d || {};
+
+/**
+ * live2d初始化
+ */
+window.live2d.init = (cdnPath: string) => {
+  // 参数初始化
+  const defineConfig = new LAppDefine.DefineConfig(cdnPath, []);
+  LAppDefine.initDefine(defineConfig);
+  if (
+    !LAppGlManager.getInstance() ||
+    !LAppDelegate.getInstance().initialize()
+  ) {
+    return;
+  }
+  LAppDelegate.getInstance().run();
+};
+
+/**
+ * 加载模型
+ * @param modelDir 模型目录
+ */
+window.live2d.loadModel = (modelDir: string) => {
+  LAppLive2DManager.getInstance().loadModel(modelDir);
+};
+
+/**
+ * 释放模型
+ */
+window.addEventListener(
+  'beforeunload',
+  (): void => LAppDelegate.releaseInstance(),
+  { passive: true }
+);

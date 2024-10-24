@@ -83,6 +83,7 @@ export class LAppModel extends CubismUserModel {
   public loadAssets(dir: string, fileName: string): void {
     this._modelHomeDir = dir;
 
+    // 加载model3.json
     fetch(`${this._modelHomeDir}${fileName}`)
       .then(response => response.arrayBuffer())
       .then(arrayBuffer => {
@@ -100,6 +101,20 @@ export class LAppModel extends CubismUserModel {
       .catch(error => {
         // model3.json読み込みでエラーが発生した時点で描画は不可能なので、setupせずエラーをcatchして何もしない
         CubismLogError(`Failed to load file ${this._modelHomeDir}${fileName}`);
+      });
+
+    // 加载配置文件config.json
+    fetch(`${this._modelHomeDir}config.json`)
+      .then(response => response.json())
+      .then(json => {
+        this._scale = json.scale ? json.scale : 1.0;
+        this._translateX = json.translate.x ? json.translate.x : 0;
+        this._translateY = json.translate.y ? json.translate.y : 0;
+      })
+      .catch(error => {
+        this._scale = 1.0;
+        this._translateX = 0;
+        this._translateY = 0;
       });
   }
 
@@ -1004,4 +1019,8 @@ export class LAppModel extends CubismUserModel {
   _allMotionCount: number; // モーション総数
   _wavFileHandler: LAppWavFileHandler; //wavファイルハンドラ
   _consistency: boolean; // MOC3一貫性チェック管理用
+
+  _scale: number; // 模型比例
+  _translateX: number; // x轴偏移量
+  _translateY: number; // y轴偏移量
 }
