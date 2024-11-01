@@ -14,6 +14,7 @@ class Model {
     async loadModelList() {
         const response = await fetch(`${this.cdnPath}model_list.json`);
         this.modelList = await response.json();
+        console.log()
     }
 
     /**
@@ -29,6 +30,13 @@ class Model {
         showMessage(message, 4000, 10);
         if (!this.modelList) await this.loadModelList();
         const target = this.modelList.models[modelId][modelTexturesId];
+        if (target === undefined) {
+            if (parseInt(modelId) === 0 && parseInt(modelTexturesId) === 0) {
+                return;
+            }
+            await this.loadModel(0, 0, message);
+            return;
+        }
         window.live2d.loadModel(target)
     }
 
@@ -38,13 +46,17 @@ class Model {
      */
     async switchTextures() {
         const modelId = localStorage.getItem("modelId");
-        let modelTexturesId = localStorage.getItem("modelTexturesId");
+        let modelTexturesId = parseInt(localStorage.getItem("modelTexturesId"));
         if (!this.modelList) await this.loadModelList();
-        const textureLength = this.modelList[modelId].length;
+        const textureLength = this.modelList.models[modelId].length;
         if (this.isOrderSwitch) {
             modelTexturesId = (modelTexturesId + 1) % textureLength;
         } else {
-            modelTexturesId = Math.floor(Math.random() * textureLength)
+            let randomTexturesId;
+            do {
+                randomTexturesId = Math.floor(Math.random() * textureLength);
+            } while (randomTexturesId === modelTexturesId)
+            modelTexturesId = randomTexturesId
         }
         // 加载模型
         this.loadModel(modelId, modelTexturesId, "我的新衣服好看嘛？")

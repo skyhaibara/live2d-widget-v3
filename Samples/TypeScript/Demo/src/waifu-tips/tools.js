@@ -2,7 +2,7 @@ import fa_comment from "@fortawesome/fontawesome-free/svgs/solid/comment.svg";
 import fa_paper_plane from "@fortawesome/fontawesome-free/svgs/solid/paper-plane.svg";
 import fa_user_circle from "@fortawesome/fontawesome-free/svgs/solid/circle-user.svg";
 import fa_street_view from "@fortawesome/fontawesome-free/svgs/solid/street-view.svg";
-import fa_camera_retro from "@fortawesome/fontawesome-free/svgs/solid/camera-retro.svg";
+import fa_smile_wink from "@fortawesome/fontawesome-free/svgs/solid/face-smile-wink.svg";
 import fa_info_circle from "@fortawesome/fontawesome-free/svgs/solid/circle-info.svg";
 import fa_xmark from "@fortawesome/fontawesome-free/svgs/solid/xmark.svg";
 
@@ -39,6 +39,12 @@ const tools = {
             }
         }
     },
+    "express": {
+        icon: fa_smile_wink,
+        callback: () => {
+            window.live2d.randomExpression();
+        }
+    },
     "switch-model": {
         icon: fa_user_circle,
         callback: () => {}
@@ -47,18 +53,10 @@ const tools = {
         icon: fa_street_view,
         callback: () => {}
     },
-    "photo": {
-        icon: fa_camera_retro,
-        callback: () => {
-            showMessage("照好了嘛，是不是很可爱呢？", 6000, 9);
-            Live2D.captureName = "photo.png";
-            Live2D.captureFrame = true;
-        }
-    },
     "info": {
         icon: fa_info_circle,
         callback: () => {
-            open("https://github.com/stevenjoezhang/live2d-widget");
+            open("https://space.bilibili.com/402971365");
         }
     },
     "quit": {

@@ -46,13 +46,6 @@ import { LAppLive2DManager } from './lapplive2dmanager';
 //   },
 //   { passive: true }
 // );
-
-const button = document.getElementById('myButton');
-button.addEventListener('click', () => {
-  console.log(4566);
-  LAppLive2DManager.getInstance().loadModel('Rice');
-});
-
 declare global {
   interface Window {
     live2d: any;
@@ -83,6 +76,13 @@ window.live2d.init = (cdnPath: string) => {
  */
 window.live2d.loadModel = (modelDir: string) => {
   LAppLive2DManager.getInstance().loadModel(modelDir);
+};
+
+/**
+ * 随机表情
+ */
+window.live2d.randomExpression = () => {
+  LAppLive2DManager.getInstance().randomExpression();
 };
 
 /**

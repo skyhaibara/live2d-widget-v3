@@ -214,7 +214,7 @@ export class LAppView {
   public onTouchesEnded(pointX: number, pointY: number): void {
     // タッチ終了
     const live2DManager: LAppLive2DManager = LAppLive2DManager.getInstance();
-    live2DManager.onDrag(0.0, 0.0);
+    // live2DManager.onDrag(0.0, 0.0);
 
     {
       // シングルタップ
@@ -231,14 +231,14 @@ export class LAppView {
       live2DManager.onTap(x, y);
 
       // 歯車にタップしたか
-      if (
-        this._gear.isHit(
-          pointX * window.devicePixelRatio,
-          pointY * window.devicePixelRatio
-        )
-      ) {
-        live2DManager.nextScene();
-      }
+      // if (
+      //   this._gear.isHit(
+      //     pointX * window.devicePixelRatio,
+      //     pointY * window.devicePixelRatio
+      //   )
+      // ) {
+      //   live2DManager.nextScene();
+      // }
     }
   }
 

@@ -79,9 +79,11 @@ export class LAppDelegate {
       canvas.addEventListener('touchcancel', onTouchCancel, { passive: true });
     } else {
       // マウス関連コールバック関数登録
-      canvas.addEventListener('mousedown', onClickBegan, { passive: true });
-      canvas.addEventListener('mousemove', onMouseMoved, { passive: true });
+      // canvas.addEventListener('mousedown', onClickBegan, { passive: true });
+      // canvas.addEventListener('mousemove', onMouseMoved, { passive: true });
       canvas.addEventListener('mouseup', onClickEnded, { passive: true });
+
+      window.addEventListener('mousemove', onMouseMoved, { passive: true });
     }
 
     // AppViewの初期化
@@ -305,18 +307,33 @@ function onClickBegan(e: MouseEvent): void {
  * マウスポインタが動いたら呼ばれる。
  */
 function onMouseMoved(e: MouseEvent): void {
-  if (!LAppDelegate.getInstance()._captured) {
-    return;
-  }
+  // if (!LAppDelegate.getInstance()._captured) {
+  //   return;
+  // }
 
   if (!LAppDelegate.getInstance()._view) {
     LAppPal.printMessage('view notfound');
     return;
   }
 
-  const rect = (e.target as Element).getBoundingClientRect();
-  const posX: number = e.clientX - rect.left;
-  const posY: number = e.clientY - rect.top;
+  // const rect = (e.target as Element).getBoundingClientRect();
+  // const posX: number = e.clientX - rect.left;
+  // const posY: number = e.clientY - rect.top;
+  const rect = canvas.getBoundingClientRect();
+  // 计算x轴
+  let posX = e.clientX - rect.left;
+  if (posX < 0) {
+    posX = 0;
+  } else if (posX > canvas.width) {
+    posX = canvas.width;
+  }
+  // 计算y轴
+  let posY = e.clientY - rect.top;
+  if (posY < 0) {
+    posY = 0;
+  } else if (posY > canvas.height) {
+    posY = canvas.height;
+  }
 
   LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
 }
@@ -359,9 +376,9 @@ function onTouchBegan(e: TouchEvent): void {
  * スワイプすると呼ばれる。
  */
 function onTouchMoved(e: TouchEvent): void {
-  if (!LAppDelegate.getInstance()._captured) {
-    return;
-  }
+  // if (!LAppDelegate.getInstance()._captured) {
+  //   return;
+  // }
 
   if (!LAppDelegate.getInstance()._view) {
     LAppPal.printMessage('view notfound');

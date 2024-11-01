@@ -13,7 +13,7 @@ function loadWidget(config) {
             <div id="waifu-tool"></div>
         </div>`);
     // 初始化live2d
-    window.live2d.init(config.waifuPath)
+    window.live2d.init(config.cdnPath + "model/")
     // https://stackoverflow.com/questions/24148403/trigger-css-transition-on-appended-element
     setTimeout(() => {
         document.getElementById("waifu").style.bottom = 0;
@@ -35,7 +35,7 @@ function loadWidget(config) {
     })();
 
     function welcomeMessage(time) {
-        if (location.pathname === "/") { // 如果是主页
+        if (location.pathname === "/hugo-stack") { // 如果是主页
             for (let { hour, text } of time) {
                 const now = new Date(),
                     after = hour.split("-")[0],
@@ -128,6 +128,62 @@ function loadWidget(config) {
         });
     }
 
+    /**
+     * 注册移动事件
+     */
+    function registerMoveEventListener() {
+        if (config.dragEnable === false) {
+            return;
+        }
+        const waifu = document.getElementById("waifu");
+        let isDown = false;
+        let waifuLeft;
+        let mouseLeft;
+        let waifuTop;
+        let mouseTop;
+        // 鼠标点击监听
+        waifu.onmousedown = function (e) {
+            isDown = true;
+            // 记录x轴
+            waifuLeft = waifu.offsetLeft;
+            mouseLeft = e.clientX;
+            // 记录y轴
+            waifuTop = waifu.offsetTop;
+            mouseTop = e.clientY;
+        }
+        // 鼠标移动监听
+        const isDirectionEmpty = !config.dragDirection || config.dragDirection.length === 0;
+        window.onmousemove = function (e) {
+            if (!isDown) {
+                return;
+            }
+            // x轴移动
+            if (isDirectionEmpty || config.dragDirection.includes("x")) {
+                let currentLeft = waifuLeft + (e.clientX - mouseLeft);
+                if (currentLeft < 0) {
+                    currentLeft = 0;
+                } else if (currentLeft > window.innerWidth - 300) {
+                    currentLeft = window.innerWidth - 300;
+                }
+                waifu.style.left = currentLeft  + "px";
+            }
+            // y轴移动
+            if (isDirectionEmpty || config.dragDirection.includes("y")) {
+                let currentTop = waifuTop + (e.clientY - mouseTop);
+                if (currentTop < 30) {
+                    currentTop = 30
+                } else if (currentTop > window.innerHeight - 290) {
+                    currentTop = window.innerHeight - 290
+                }
+                waifu.style.top = currentTop + "px";
+            }
+        }
+        // 鼠标点击松开监听
+        window.onmouseup = function (e) {
+            isDown = false;
+        }
+    }
+
     (function initModel() {
         let modelId = localStorage.getItem("modelId"),
             modelTexturesId = localStorage.getItem("modelTexturesId");
@@ -139,7 +195,8 @@ function loadWidget(config) {
         model.loadModel(modelId, modelTexturesId);
         fetch(config.waifuPath)
             .then(response => response.json())
-            .then(registerEventListener);
+            .then(registerEventListener)
+            .then(registerMoveEventListener);
     })();
 }
 

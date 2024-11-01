@@ -95,34 +95,45 @@ export class LAppLive2DManager {
    * @param y 画面のY座標
    */
   public onTap(x: number, y: number): void {
-    if (LAppDefine.DebugLogEnable) {
-      LAppPal.printMessage(
-        `[APP]tap point: {x: ${x.toFixed(2)} y: ${y.toFixed(2)}}`
-      );
-    }
+    // if (LAppDefine.DebugLogEnable) {
+    //   LAppPal.printMessage(
+    //     `[APP]tap point: {x: ${x.toFixed(2)} y: ${y.toFixed(2)}}`
+    //   );
+    // }
+    //
+    // for (let i = 0; i < this._models.getSize(); i++) {
+    //   if (this._models.at(i).hitTest(LAppDefine.HitAreaNameHead, x, y)) {
+    //     if (LAppDefine.DebugLogEnable) {
+    //       LAppPal.printMessage(
+    //         `[APP]hit area: [${LAppDefine.HitAreaNameHead}]`
+    //       );
+    //     }
+    //     this._models.at(i).setRandomExpression();
+    //   } else if (this._models.at(i).hitTest(LAppDefine.HitAreaNameBody, x, y)) {
+    //     if (LAppDefine.DebugLogEnable) {
+    //       LAppPal.printMessage(
+    //         `[APP]hit area: [${LAppDefine.HitAreaNameBody}]`
+    //       );
+    //     }
+    //     this._models
+    //       .at(i)
+    //       .startRandomMotion(
+    //         LAppDefine.MotionGroupTapBody,
+    //         LAppDefine.PriorityNormal,
+    //         this._finishedMotion
+    //       );
+    //   }
+    // }
 
+    // 点击画布后播放随机动作
     for (let i = 0; i < this._models.getSize(); i++) {
-      if (this._models.at(i).hitTest(LAppDefine.HitAreaNameHead, x, y)) {
-        if (LAppDefine.DebugLogEnable) {
-          LAppPal.printMessage(
-            `[APP]hit area: [${LAppDefine.HitAreaNameHead}]`
-          );
-        }
-        this._models.at(i).setRandomExpression();
-      } else if (this._models.at(i).hitTest(LAppDefine.HitAreaNameBody, x, y)) {
-        if (LAppDefine.DebugLogEnable) {
-          LAppPal.printMessage(
-            `[APP]hit area: [${LAppDefine.HitAreaNameBody}]`
-          );
-        }
-        this._models
-          .at(i)
-          .startRandomMotion(
-            LAppDefine.MotionGroupTapBody,
-            LAppDefine.PriorityNormal,
-            this._finishedMotion
-          );
-      }
+      this._models
+        .at(i)
+        .startRandomMotion(
+          LAppDefine.MotionGroupTapBody,
+          LAppDefine.PriorityNormal,
+          this._finishedMotion
+        );
     }
   }
 
@@ -231,5 +242,14 @@ export class LAppLive2DManager {
     // 数组添加新的模型
     this._models.pushBack(new LAppModel());
     this._models.at(0).loadAssets(modelPath, modelJsonName);
+  }
+
+  /**
+   * 随机表情
+   */
+  public randomExpression() {
+    for (let i = 0; i < this._models.getSize(); i++) {
+      this._models.at(i).setRandomExpression();
+    }
   }
 }
