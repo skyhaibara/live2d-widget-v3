@@ -12,15 +12,15 @@ export default defineConfig((env: ConfigEnv): UserConfig => {
     resolve: {
       extensions: ['.ts', '.js'],
       alias: {
-        '@framework': path.resolve(__dirname, '../../../Framework/src'),
+        '@framework': path.resolve(__dirname, '../Framework/src'),
       }
     },
-    build: {
-      target: 'modules',
-      assetsDir: 'assets',
-      outDir: './dist',
-      sourcemap: env.mode == 'development' ? true : false,
-    },
+    // build: {
+    //   target: 'modules',
+    //   assetsDir: 'assets',
+    //   outDir: './dist',
+    //   sourcemap: env.mode == 'development' ? true : false,
+    // },
   };
   return common;
 });

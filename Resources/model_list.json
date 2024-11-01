@@ -1,13 +1,10 @@
 {
     "models": [
-        ["阿库露_vts"],
         ["Rice"],
         ["Wanko", "Natori", "Mark"]
     ],
     "messages": [
-        "这里是阿库露",
         "这里是Rice",
-        "这里是Natori",
-        "这里是Mark"
+        "这里是Natori"
     ]
 }

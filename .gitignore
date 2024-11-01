@@ -1,6 +1,6 @@
 .idea
 .vscode
 Framework/.vscode
-Samples/TypeScript/Demo/dist
-Samples/TypeScript/Demo/node_modules
-Samples/TypeScript/Demo/public
+/Demo/dist
+/Demo/node_modules
+/Demo/public
