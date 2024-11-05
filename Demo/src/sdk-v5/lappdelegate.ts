@@ -125,6 +125,9 @@ export class LAppDelegate {
    * 実行処理。
    */
   public run(): void {
+    let last = Date.now();
+    const fps = 60;
+    const fpsInterval = 1000 / fps;
     // メインループ
     const loop = (): void => {
       // インスタンスの有無の確認
@@ -135,26 +138,34 @@ export class LAppDelegate {
       // 時間更新
       LAppPal.updateTime();
 
-      // 画面の初期化（alpaha：不透明度改为0）
-      gl.clearColor(0.0, 0.0, 0.0, 0.0);
+      // 锁60帧，避免高刷屏卡顿
+      if (LAppPal.s_currentFrame - last > fpsInterval) {
+        // 画面の初期化（alpaha：不透明度改为0）
+        gl.clearColor(0.0, 0.0, 0.0, 0.0);
 
-      // 深度テストを有効化
-      gl.enable(gl.DEPTH_TEST);
+        // 深度テストを有効化
+        gl.enable(gl.DEPTH_TEST);
 
-      // 近くにある物体は、遠くにある物体を覆い隠す
-      gl.depthFunc(gl.LEQUAL);
+        // 近くにある物体は、遠くにある物体を覆い隠す
+        gl.depthFunc(gl.LEQUAL);
 
-      // カラーバッファや深度バッファをクリアする
-      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        // カラーバッファや深度バッファをクリアする
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-      gl.clearDepth(1.0);
+        gl.clearDepth(1.0);
 
-      // 透過設定
-      gl.enable(gl.BLEND);
-      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+        // 透過設定
+        gl.enable(gl.BLEND);
+        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-      // 描画更新
-      this._view.render();
+        // 描画更新
+        this._view.render();
+
+        // 时间校准
+        last =
+          LAppPal.s_currentFrame -
+          ((LAppPal.s_currentFrame - last) % fpsInterval);
+      }
 
       // ループのために再帰呼び出し
       requestAnimationFrame(loop);
