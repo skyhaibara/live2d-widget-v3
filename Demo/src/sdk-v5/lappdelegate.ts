@@ -81,9 +81,8 @@ export class LAppDelegate {
       // マウス関連コールバック関数登録
       // canvas.addEventListener('mousedown', onClickBegan, { passive: true });
       // canvas.addEventListener('mousemove', onMouseMoved, { passive: true });
-      canvas.addEventListener('mouseup', onClickEnded, { passive: true });
-
       window.addEventListener('mousemove', onMouseMoved, { passive: true });
+      canvas.addEventListener('mouseup', onClickEnded, { passive: true });
     }
 
     // AppViewの初期化
@@ -125,9 +124,6 @@ export class LAppDelegate {
    * 実行処理。
    */
   public run(): void {
-    let last = Date.now();
-    const fps = 60;
-    const fpsInterval = 1000 / fps;
     // メインループ
     const loop = (): void => {
       // インスタンスの有無の確認
@@ -138,34 +134,26 @@ export class LAppDelegate {
       // 時間更新
       LAppPal.updateTime();
 
-      // 锁60帧，避免高刷屏卡顿
-      if (LAppPal.s_currentFrame - last > fpsInterval) {
-        // 画面の初期化（alpaha：不透明度改为0）
-        gl.clearColor(0.0, 0.0, 0.0, 0.0);
+      // 画面の初期化（alpaha：不透明度改为0）
+      gl.clearColor(0.0, 0.0, 0.0, 0.0);
 
-        // 深度テストを有効化
-        gl.enable(gl.DEPTH_TEST);
+      // 深度テストを有効化
+      gl.enable(gl.DEPTH_TEST);
 
-        // 近くにある物体は、遠くにある物体を覆い隠す
-        gl.depthFunc(gl.LEQUAL);
+      // 近くにある物体は、遠くにある物体を覆い隠す
+      gl.depthFunc(gl.LEQUAL);
 
-        // カラーバッファや深度バッファをクリアする
-        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+      // カラーバッファや深度バッファをクリアする
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        gl.clearDepth(1.0);
+      gl.clearDepth(1.0);
 
-        // 透過設定
-        gl.enable(gl.BLEND);
-        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+      // 透過設定
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-        // 描画更新
-        this._view.render();
-
-        // 时间校准
-        last =
-          LAppPal.s_currentFrame -
-          ((LAppPal.s_currentFrame - last) % fpsInterval);
-      }
+      // 描画更新
+      this._view.render();
 
       // ループのために再帰呼び出し
       requestAnimationFrame(loop);
@@ -328,23 +316,9 @@ function onMouseMoved(e: MouseEvent): void {
   }
 
   // const rect = (e.target as Element).getBoundingClientRect();
-  // const posX: number = e.clientX - rect.left;
-  // const posY: number = e.clientY - rect.top;
   const rect = canvas.getBoundingClientRect();
-  // 计算x轴
-  let posX = e.clientX - rect.left;
-  if (posX < 0) {
-    posX = 0;
-  } else if (posX > canvas.width) {
-    posX = canvas.width;
-  }
-  // 计算y轴
-  let posY = e.clientY - rect.top;
-  if (posY < 0) {
-    posY = 0;
-  } else if (posY > canvas.height) {
-    posY = canvas.height;
-  }
+  const posX: number = e.clientX - rect.left;
+  const posY: number = e.clientY - rect.top;
 
   LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
 }

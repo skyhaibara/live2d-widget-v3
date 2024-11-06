@@ -12,8 +12,6 @@ function loadWidget(config) {
             <canvas id="live2d" width="800" height="800"></canvas>
             <div id="waifu-tool"></div>
         </div>`);
-    // 初始化live2d
-    window.live2d.init(config.cdnPath + "model/")
     // https://stackoverflow.com/questions/24148403/trigger-css-transition-on-appended-element
     setTimeout(() => {
         document.getElementById("waifu").style.bottom = 0;
@@ -192,7 +190,14 @@ function loadWidget(config) {
             modelId = 0; // 模型 ID
             modelTexturesId = 0; // 材质 ID
         }
-        model.loadModel(modelId, modelTexturesId);
+        new Promise((resolve, reject) => {
+            // 初始化live2d
+            window.live2d.init(config.cdnPath + "model/")
+            resolve()
+        }).then(() => {
+            // 加载live2d模型
+            model.loadModel(modelId, modelTexturesId);
+        })
         fetch(config.waifuPath)
             .then(response => response.json())
             .then(registerEventListener)

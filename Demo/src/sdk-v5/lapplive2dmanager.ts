@@ -95,38 +95,35 @@ export class LAppLive2DManager {
    * @param y 画面のY座標
    */
   public onTap(x: number, y: number): void {
-    // if (LAppDefine.DebugLogEnable) {
-    //   LAppPal.printMessage(
-    //     `[APP]tap point: {x: ${x.toFixed(2)} y: ${y.toFixed(2)}}`
-    //   );
-    // }
-    //
-    // for (let i = 0; i < this._models.getSize(); i++) {
-    //   if (this._models.at(i).hitTest(LAppDefine.HitAreaNameHead, x, y)) {
-    //     if (LAppDefine.DebugLogEnable) {
-    //       LAppPal.printMessage(
-    //         `[APP]hit area: [${LAppDefine.HitAreaNameHead}]`
-    //       );
-    //     }
-    //     this._models.at(i).setRandomExpression();
-    //   } else if (this._models.at(i).hitTest(LAppDefine.HitAreaNameBody, x, y)) {
-    //     if (LAppDefine.DebugLogEnable) {
-    //       LAppPal.printMessage(
-    //         `[APP]hit area: [${LAppDefine.HitAreaNameBody}]`
-    //       );
-    //     }
-    //     this._models
-    //       .at(i)
-    //       .startRandomMotion(
-    //         LAppDefine.MotionGroupTapBody,
-    //         LAppDefine.PriorityNormal,
-    //         this._finishedMotion
-    //       );
-    //   }
-    // }
+    if (LAppDefine.DebugLogEnable) {
+      LAppPal.printMessage(
+        `[APP]tap point: {x: ${x.toFixed(2)} y: ${y.toFixed(2)}}`
+      );
+    }
 
-    // 点击画布后播放随机动作
     for (let i = 0; i < this._models.getSize(); i++) {
+      // if (this._models.at(i).hitTest(LAppDefine.HitAreaNameHead, x, y)) {
+      //   if (LAppDefine.DebugLogEnable) {
+      //     LAppPal.printMessage(
+      //       `[APP]hit area: [${LAppDefine.HitAreaNameHead}]`
+      //     );
+      //   }
+      //   this._models.at(i).setRandomExpression();
+      // } else if (this._models.at(i).hitTest(LAppDefine.HitAreaNameBody, x, y)) {
+      //   if (LAppDefine.DebugLogEnable) {
+      //     LAppPal.printMessage(
+      //       `[APP]hit area: [${LAppDefine.HitAreaNameBody}]`
+      //     );
+      //   }
+      //   this._models
+      //     .at(i)
+      //     .startRandomMotion(
+      //       LAppDefine.MotionGroupTapBody,
+      //       LAppDefine.PriorityNormal,
+      //       this._finishedMotion
+      //     );
+      // }
+      // 点击画布后播放随机动作
       this._models
         .at(i)
         .startRandomMotion(
@@ -151,22 +148,24 @@ export class LAppLive2DManager {
       const model: LAppModel = this.getModel(i);
 
       if (model.getModel()) {
-        if (model.getModel().getCanvasWidth() > 1.0 && width < height) {
-          // 横に長いモデルを縦長ウィンドウに表示する際モデルの横サイズでscaleを算出する
-          model.getModelMatrix().setWidth(2.0);
-          projection.scale(1.0, width / height);
-        } else {
-          projection.scale(height / width, 1.0);
-        }
+        // if (model.getModel().getCanvasWidth() > 1.0 && width < height) {
+        //   // 横に長いモデルを縦長ウィンドウに表示する際モデルの横サイズでscaleを算出する
+        //   model.getModelMatrix().setWidth(2.0);
+        //   projection.scale(1.0, width / height);
+        // } else {
+        //   projection.scale(height / width, 1.0);
+        // }
+
+        // 设置自定义配置
+        projection.scale(model._scale, model._scale);
+        projection.translate(model._translateX, model._translateY);
 
         // 必要があればここで乗算
         if (this._viewMatrix != null) {
           projection.multiplyByMatrix(this._viewMatrix);
         }
       }
-      // 设置自定义配置
-      projection.scale(model._scale, model._scale);
-      projection.translate(model._translateX, model._translateY);
+
       model.update();
       model.draw(projection); // 参照渡しなのでprojectionは変質する。
     }
