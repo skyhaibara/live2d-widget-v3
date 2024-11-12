@@ -134,6 +134,7 @@ function loadWidget(config) {
             return;
         }
         const waifu = document.getElementById("waifu");
+        const live2d = document.getElementById("live2d")
         let isDown = false;
         let waifuLeft;
         let mouseLeft;
@@ -160,8 +161,8 @@ function loadWidget(config) {
                 let currentLeft = waifuLeft + (e.clientX - mouseLeft);
                 if (currentLeft < 0) {
                     currentLeft = 0;
-                } else if (currentLeft > window.innerWidth - 300) {
-                    currentLeft = window.innerWidth - 300;
+                } else if (currentLeft > window.innerWidth - live2d.clientWidth) {
+                    currentLeft = window.innerWidth - live2d.clientWidth;
                 }
                 waifu.style.left = currentLeft  + "px";
             }
@@ -170,8 +171,8 @@ function loadWidget(config) {
                 let currentTop = waifuTop + (e.clientY - mouseTop);
                 if (currentTop < 30) {
                     currentTop = 30
-                } else if (currentTop > window.innerHeight - 290) {
-                    currentTop = window.innerHeight - 290
+                } else if (currentTop > window.innerHeight - live2d.clientHeight + 10) {
+                    currentTop = window.innerHeight - live2d.clientHeight + 10
                 }
                 waifu.style.top = currentTop + "px";
             }

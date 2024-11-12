@@ -81,7 +81,7 @@
 	color: #aaa;
 	opacity: 0;
 	position: absolute;
-	margin-left: 260px;
+	right: 5px;
 	top: 70px;
 	transition: opacity 1s;
 }
