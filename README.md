@@ -17,15 +17,16 @@
 
 + 在页头(head)或页脚(footer)引入以下脚本代码，演示的模型是官方SDK自带的模型
 ```javascript
+const cdnPath = 'https://cdn.jsdelivr.net/gh/letere-gzj/live2d-widget-v3@main';
 const config = {
     // 资源路径
     path: {
-        modelPath: "/Resources/",
-        cssPath: "/assets/waifu.css",
-        tipsJsonPath: "/assets/waifu-tips.json",
-        tipsJsPath: "/assets/waifu-tips.js",
-        live2dCorePath: "/Core/live2dcubismcore.js",
-        live2dSdkPath: "/assets/live2d-sdk.js"
+        modelPath: cdnPath + "/Resources/",
+        cssPath: cdnPath + "/waifu.css",
+        tipsJsonPath: cdnPath + "/waifu-tips.json",
+        tipsJsPath: cdnPath + "/waifu-tips.js",
+        live2dCorePath: cdnPath + "/Core/live2dcubismcore.js",
+        live2dSdkPath: cdnPath + "/live2d-sdk.js"
     },
     // 工具栏
     tools: ["hitokoto", "asteroids", "express", "switch-model", "switch-texture", "info", "quit"],

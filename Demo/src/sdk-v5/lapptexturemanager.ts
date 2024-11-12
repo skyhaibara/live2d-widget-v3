@@ -73,6 +73,8 @@ export class LAppTextureManager {
 
     // データのオンロードをトリガーにする
     const img = new Image();
+    // 图片跨域
+    img.crossOrigin = 'anonymous';
     img.addEventListener(
       'load',
       (): void => {
