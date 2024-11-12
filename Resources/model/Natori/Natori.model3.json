@@ -3,7 +3,7 @@
 	"FileReferences": {
 		"Moc": "Natori.moc3",
 		"Textures": [
-			"Natori.2048/texture_00.png"
+			"Natori.2048/texture_00.webp"
 		],
 		"Physics": "Natori.physics3.json",
 		"Pose": "Natori.pose3.json",

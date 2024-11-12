@@ -3,7 +3,7 @@
 	"FileReferences": {
 		"Moc": "Wanko.moc3",
 		"Textures": [
-			"Wanko.1024/texture_00.png"
+			"Wanko.1024/texture_00.webp"
 		],
 		"Physics": "Wanko.physics3.json",
 		"DisplayInfo": "Wanko.cdi3.json",
