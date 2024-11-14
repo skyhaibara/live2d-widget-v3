@@ -16,68 +16,70 @@
 ### 2.1 基础引入
 
 + 在页头(head)或页脚(footer)引入以下脚本代码，演示的模型是官方SDK自带的模型
-```javascript
-const cdnPath = 'https://cdn.jsdelivr.net/gh/letere-gzj/live2d-widget-v3@main';
-const config = {
+```html
+<script>
+  const cdnPath = 'https://cdn.jsdelivr.net/gh/letere-gzj/live2d-widget-v3@main';
+  const config = {
     // 资源路径
     path: {
-        modelPath: cdnPath + "/Resources/",
-        cssPath: cdnPath + "/waifu.css",
-        tipsJsonPath: cdnPath + "/waifu-tips.json",
-        tipsJsPath: cdnPath + "/waifu-tips.js",
-        live2dCorePath: cdnPath + "/Core/live2dcubismcore.js",
-        live2dSdkPath: cdnPath + "/live2d-sdk.js"
+      modelPath: cdnPath + "/Resources/",
+      cssPath: cdnPath + "/waifu.css",
+      tipsJsonPath: cdnPath + "/waifu-tips.json",
+      tipsJsPath: cdnPath + "/waifu-tips.js",
+      live2dCorePath: cdnPath + "/Core/live2dcubismcore.js",
+      live2dSdkPath: cdnPath + "/live2d-sdk.js"
     },
     // 工具栏
     tools: ["hitokoto", "asteroids", "express", "switch-model", "switch-texture", "info", "quit"],
     // 模型拖拽
     drag: {
-        enable: true,
-        direction: ["x", "y"]
+      enable: true,
+      direction: ["x", "y"]
     },
     // 模型切换(order: 顺序切换，random: 随机切换)
     switchType: "order"
-}
+  }
 
-// 加载资源并初始化
-if (screen.width >= 768) {
-Promise.all([
-    loadExternalResource(config.path.cssPath, "css"),
-    loadExternalResource(config.path.live2dCorePath, "js"),
-    loadExternalResource(config.path.live2dSdkPath, "js"),
-    loadExternalResource(config.path.tipsJsPath, "js")
-]).then(() => {
-    initWidget({
+  // 加载资源并初始化
+  if (screen.width >= 768) {
+    Promise.all([
+      loadExternalResource(config.path.cssPath, "css"),
+      loadExternalResource(config.path.live2dCorePath, "js"),
+      loadExternalResource(config.path.live2dSdkPath, "js"),
+      loadExternalResource(config.path.tipsJsPath, "js")
+    ]).then(() => {
+      initWidget({
         waifuPath: config.path.tipsJsonPath,
         cdnPath: config.path.modelPath,
         tools: config.tools,
         dragEnable: config.drag.enable,
         dragDirection: config.drag.direction,
         switchType: config.switchType
+      });
     });
-});
-}
+  }
 
-// 异步加载资源
-function loadExternalResource(url, type) {
+  // 异步加载资源
+  function loadExternalResource(url, type) {
     return new Promise((resolve, reject) => {
-        let tag;
-        if (type === "css") {
-            tag = document.createElement("link");
-            tag.rel = "stylesheet";
-            tag.href = url;
-        }
-        else if (type === "js") {
-            tag = document.createElement("script");
-            tag.src = url;
-        }
-        if (tag) {
-            tag.onload = () => resolve(url);
-            tag.onerror = () => reject(url);
-            document.head.appendChild(tag);
-        }
+      let tag;
+      if (type === "css") {
+        tag = document.createElement("link");
+        tag.rel = "stylesheet";
+        tag.href = url;
+      }
+      else if (type === "js") {
+        tag = document.createElement("script");
+        tag.src = url;
+      }
+      if (tag) {
+        tag.onload = () => resolve(url);
+        tag.onerror = () => reject(url);
+        document.head.appendChild(tag);
+      }
     });
-}
+  }
+</script>
 ```
 
 ---
@@ -137,8 +139,8 @@ function loadExternalResource(url, type) {
 
 #### 2.3.3 修改模型配置
 
-+ (1) 调整模型大小和位置
-  + 在模型目录下，创建config.json文件，并填写下面的参数，具体参考 **Resources** 目录下的模型
++ **(1) 调整模型大小和位置**
+  + 在模型目录下，创建`config.json`文件，并填写下面的参数，具体参考 **Resources** 目录下的模型
   + **scale**: 模型大小
   + **translate.x**：模型x轴偏移量
   + **translate.y**：模型y轴偏移量
@@ -153,8 +155,8 @@ function loadExternalResource(url, type) {
 
 ```
 
-+ (2) 配置模型表情
-  + 若模型存在xxx.exp3.json类型的文件，可以通过修改xxx.model3.json文件，来配置表情，具体参考 **Resources** 目录下的模型
++ **(2) 配置模型表情**
+  + 若模型存在`xxx.exp3.json`类型的文件，可以通过修改`xxx.model3.json`文件，来配置表情，具体参考 **Resources** 目录下的模型
 ```json
 {
   ...
@@ -170,8 +172,8 @@ function loadExternalResource(url, type) {
 }
 ```
 
-+ (3) 配置模型动作与声音
-  + 若模型存在xxx.motion3.json文件，可以通过修改xxx.model3.json文件，来配置动作以及对应的声音，具体参考 **Resources** 目录下的模型
++ **(3) 配置模型动作与声音**
+  + 若模型存在`xxx.motion3.json`文件，可以通过修改`xxx.model3.json`文件，来配置动作以及对应的声音，具体参考 **Resources** 目录下的模型
   + **Idle**：闲置动作，会一直从闲置动作数组中，随机选一个进行播放
   + **TapBody**：点击动作，当点击live2d画布时，才会从点击动作数组中，随机选一个进行播放
 ```json

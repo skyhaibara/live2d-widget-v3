@@ -27,6 +27,6 @@
     "esbuild": "^0.24.0"
   },
   "optionalDependencies": {
-    "fsevents": "*"
+    "fsevents": ">=1.2.11"
   }
 }
