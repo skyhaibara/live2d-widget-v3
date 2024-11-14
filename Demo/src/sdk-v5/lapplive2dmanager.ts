@@ -148,16 +148,19 @@ export class LAppLive2DManager {
       const model: LAppModel = this.getModel(i);
 
       if (model.getModel()) {
-        // if (model.getModel().getCanvasWidth() > 1.0 && width < height) {
-        //   // 横に長いモデルを縦長ウィンドウに表示する際モデルの横サイズでscaleを算出する
-        //   model.getModelMatrix().setWidth(2.0);
-        //   projection.scale(1.0, width / height);
-        // } else {
-        //   projection.scale(height / width, 1.0);
-        // }
+        if (model.getModel().getCanvasWidth() > 1.0 && width < height) {
+          // 横に長いモデルを縦長ウィンドウに表示する際モデルの横サイズでscaleを算出する
+          model.getModelMatrix().setWidth(2.0);
+          projection.scale(1.0, width / height);
+        } else {
+          projection.scale(height / width, 1.0);
+        }
 
         // 设置自定义配置
-        projection.scale(model._scale, model._scale);
+        projection.scale(
+          model._scale * projection.getScaleX(),
+          model._scale * projection.getScaleY()
+        );
         projection.translate(model._translateX, model._translateY);
 
         // 必要があればここで乗算
