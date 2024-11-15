@@ -59,8 +59,6 @@ window.live2d = window.live2d || {};
  */
 window.live2d.init = (cdnPath: string) => {
   // 参数初始化
-  const defineConfig = new LAppDefine.DefineConfig(cdnPath, []);
-  LAppDefine.initDefine(defineConfig);
   if (
     !LAppGlManager.getInstance() ||
     !LAppDelegate.getInstance().initialize()

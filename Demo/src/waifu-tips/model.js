@@ -37,7 +37,7 @@ class Model {
             await this.loadModel(0, 0, message);
             return;
         }
-        window.live2d.loadModel(target)
+        window.live2d.loadModel(`${this.cdnPath}`+ 'model/' + target + '/')
     }
 
     /**

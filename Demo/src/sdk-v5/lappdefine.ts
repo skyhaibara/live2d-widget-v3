@@ -82,33 +82,3 @@ export const CubismLoggingLevel: LogLevel = LogLevel.LogLevel_Verbose;
 // デフォルトのレンダーターゲットサイズ
 export const RenderTargetWidth = 1900;
 export const RenderTargetHeight = 1000;
-
-/**
- * 定义配置类
- */
-export class DefineConfig {
-  // 资源路径
-  resourcePath: string;
-
-  // 模型文件
-  modelDir: string[];
-
-  // 模型数量
-  modelDirSize: number;
-
-  constructor(resourcePath: string, modelDir: string[]) {
-    this.resourcePath = resourcePath;
-    this.modelDir = modelDir;
-    this.modelDirSize = modelDir.length;
-  }
-}
-
-/**
- * 定义初始化
- * @param config
- */
-export function initDefine(config: DefineConfig) {
-  ResourcesPath = config.resourcePath;
-  ModelDir = config.modelDir;
-  ModelDirSize = config.modelDirSize;
-}
