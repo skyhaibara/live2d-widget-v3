@@ -23,16 +23,16 @@
 <body>
 
 <script>
-
+  const cdnPath = '';
   const config = {
     // 资源路径
     path: {
-      modelPath: "/Resources/",
-      cssPath: "/assets/waifu.css",
-      tipsJsonPath: "/assets/waifu-tips.json",
-      tipsJsPath: "/assets/waifu-tips.js",
-      live2dCorePath: "/Core/live2dcubismcore.js",
-      live2dSdkPath: "/assets/live2d-sdk.js"
+      modelPath: cdnPath + "/Resources/",
+      cssPath: cdnPath + "/assets/waifu.css",
+      tipsJsonPath: cdnPath + "/assets/waifu-tips.json",
+      tipsJsPath: cdnPath + "/assets/waifu-tips.js",
+      live2dCorePath: cdnPath + "/Core/live2dcubismcore.js",
+      live2dSdkPath: cdnPath + "/assets/live2d-sdk.js"
     },
     // 工具栏
     tools: ["hitokoto", "asteroids", "express", "switch-model", "switch-texture", "info", "quit"],
