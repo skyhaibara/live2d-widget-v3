@@ -59,7 +59,7 @@ class Model {
             modelTexturesId = randomTexturesId
         }
         // 加载模型
-        this.loadModel(modelId, modelTexturesId, "我的新衣服好看嘛？")
+        this.loadModel(modelId, modelTexturesId, this.modelList.messages[modelId][modelTexturesId])
     }
 
     /**
@@ -70,7 +70,7 @@ class Model {
         let modelId = localStorage.getItem("modelId");
         if (!this.modelList) await this.loadModelList();
         const index = (++modelId >= this.modelList.models.length) ? 0 : modelId;
-        this.loadModel(index, 0, this.modelList.messages[index]);
+        this.loadModel(index, 0, this.modelList.messages[index][0]);
     }
 }
 
