@@ -27,14 +27,13 @@ class Model {
     async loadModel(modelId, modelTexturesId, message) {
         localStorage.setItem("modelId", modelId);
         localStorage.setItem("modelTexturesId", modelTexturesId);
-        showMessage(message, 4000, 10);
         if (!this.modelList) await this.loadModelList();
         const target = this.modelList.models[modelId][modelTexturesId];
         if (target === undefined) {
             if (parseInt(modelId) === 0 && parseInt(modelTexturesId) === 0) {
                 return;
             }
-            await this.loadModel(0, 0, message);
+            await this.loadModel(0, 0, this.modelList.messages[0][0]);
             return;
         }
         window.live2d.loadModel(`${this.cdnPath}`+ 'model/' + target + '/')

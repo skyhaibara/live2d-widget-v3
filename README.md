@@ -4,13 +4,16 @@
 
 ## 1 介绍
 
-+ **演示地址**：[demo](https://letere-gzj.github.io/live2d-v3-demo/)
++ **演示地址**：[DEMO](https://letere-gzj.github.io/live2d-v3-demo/)
++ **文章教程**：[【Hugo】博客引入moc3类型的live2d模型](https://letere-gzj.github.io/hugo-stack/p/hugo/live2d-moc3/)
 
+![](md/png/sample.png)
 
-+ 此项目是基于【[stevenjoezhang/live2d-widget](https://github.com/stevenjoezhang/live2d-widget)】项目的二次开发
-+ 原本live2d-widget只能渲染moc模型，无法渲染moc3模型，于是此项目在原版的架构上，对接了新版的Cubism SDK for Web(sdk当前版本v5)，来渲染moc3模型
-+ 因为是基于live2d-widget项目的二次开发，使用体验上与原版的live2d-widget相差不大，基本的功能都有所保留
-+ **tips**: 此项目暂适配moc3模型，并不适配moc模型，且暂时未考虑适配moc模型
+> + （1）此项目是基于【[stevenjoezhang/live2d-widget](https://github.com/stevenjoezhang/live2d-widget)】项目的二次开发
+> + （2）原本live2d-widget只能渲染moc模型，无法渲染moc3模型，于是此项目在原版的架构上，对接了新版的Cubism SDK for Web(sdk当前版本v5)，来渲染moc3模型
+> + （3）因为是基于live2d-widget项目的二次开发，使用体验上与原版的live2d-widget相差不大，基本的功能都有所保留
+
+> + **Tips:** 此项目暂适配moc3模型，并不适配moc模型，且暂时未考虑适配moc模型
 
 ---
 
@@ -144,7 +147,7 @@
 
 + **(1) 调整模型大小和位置**
   + 在模型目录下，创建`config.json`文件，并填写下面的参数，具体参考 **Resources** 目录下的模型
-  + 调整模型大小和位置，可以搭配 [demo](https://letere-gzj.github.io/live2d-v3-demo/) 使用
+  + 调整模型大小和位置，可以搭配 [DEMO](https://letere-gzj.github.io/live2d-v3-demo/) 使用
   + **scale**: 模型大小
   + **translate.x**：模型x轴偏移量
   + **translate.y**：模型y轴偏移量
