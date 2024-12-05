@@ -27,6 +27,7 @@
   const config = {
     // 资源路径
     path: {
+      homePath: "/",
       modelPath: cdnPath + "/Resources/",
       cssPath: cdnPath + "/assets/waifu.css",
       tipsJsonPath: cdnPath + "/assets/waifu-tips.json",
@@ -54,6 +55,7 @@
       loadExternalResource(config.path.tipsJsPath, "js")
     ]).then(() => {
       initWidget({
+        homePath: config.path.homePath,
         waifuPath: config.path.tipsJsonPath,
         cdnPath: config.path.modelPath,
         tools: config.tools,

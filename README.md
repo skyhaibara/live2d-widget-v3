@@ -30,6 +30,7 @@
   const config = {
     // 资源路径
     path: {
+      homePath: '/',
       modelPath: cdnPath + "/Resources/",
       cssPath: cdnPath + "/waifu.css",
       tipsJsonPath: cdnPath + "/waifu-tips.json",
@@ -57,6 +58,7 @@
       loadExternalResource(config.path.tipsJsPath, "js")
     ]).then(() => {
       initWidget({
+        homePath: config.path.homePath,
         waifuPath: config.path.tipsJsonPath,
         cdnPath: config.path.modelPath,
         tools: config.tools,
@@ -98,7 +100,8 @@
 
 |                                     参数                                     | 说明                                                                                                                                                                                                      |
 |:--------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|                             **path.modelPath**                             | 模型文件的路径，即可访问到model和model_list.json文件的路径，可搭配【[jsDelivr](https://www.jsdelivr.com/)】来使用cdn路径                                                                                                                                       |
+|                             **path.modelPath**                             | 网站主页路径，若域名后有子路径，则将子路径填写上，结尾记得带上 `/` , 如果没有子路经则 `/` 就好，用来显示live2d的时间提示语                                                                                                                                  |
+|                             **path.modelPath**                             | 模型文件的路径，即可访问到model和model_list.json文件的路径，可搭配【[jsDelivr](https://www.jsdelivr.com/)】来使用cdn路径                                                                                                              |
 |                              **path.cssPath**                              | live2d画布的css样式的路径，可直接在仓库下载此文件，来自定义自己想要的样式，然后通过本地或cdn引入自己改好的css文件                                                                                                                                        |
 |                           **path.tipsJsonPath**                            | live2d提示语json文件的路径，默认适配hexo-next主题，可直接在仓库下载此文件，来自定义适配自己的主题，然后通过本地或cdn引入自己改好的json文件                                                                                                                      |
 | **path.tipsJsPath**<br> **path.live2dCorePath**<br> **path.live2dSdkPath** | 代码核心文件路径，不建议修改                                                                                                                                                                                          | |

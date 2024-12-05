@@ -28,6 +28,7 @@ class Model {
         localStorage.setItem("modelId", modelId);
         localStorage.setItem("modelTexturesId", modelTexturesId);
         if (!this.modelList) await this.loadModelList();
+        showMessage(message, 4000, 10);
         const target = this.modelList.models[modelId][modelTexturesId];
         if (target === undefined) {
             if (parseInt(modelId) === 0 && parseInt(modelTexturesId) === 0) {

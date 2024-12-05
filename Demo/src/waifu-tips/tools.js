@@ -56,7 +56,7 @@ const tools = {
     "info": {
         icon: fa_info_circle,
         callback: () => {
-            open("https://space.bilibili.com/402971365");
+            open("https://github.com/letere-gzj/live2d-widget-v3");
         }
     },
     "quit": {
