@@ -235,6 +235,26 @@ export class LAppDelegate {
   }
 
   /**
+   * 获取canvas的blob数据
+   */
+  public getCanvasBlob(): Promise<Blob> {
+    this._view.render();
+    return new Promise((resolve, reject) => {
+      try {
+        canvas.toBlob(
+          blob => {
+            resolve(blob);
+          },
+          'image/png',
+          1.0
+        );
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  /**
    * コンストラクタ
    */
   constructor() {

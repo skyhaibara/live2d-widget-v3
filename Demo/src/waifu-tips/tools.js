@@ -5,8 +5,10 @@ import fa_street_view from "@fortawesome/fontawesome-free/svgs/solid/street-view
 import fa_smile_wink from "@fortawesome/fontawesome-free/svgs/solid/face-smile-wink.svg";
 import fa_info_circle from "@fortawesome/fontawesome-free/svgs/solid/circle-info.svg";
 import fa_xmark from "@fortawesome/fontawesome-free/svgs/solid/xmark.svg";
+import fa_camera_retro from "@fortawesome/fontawesome-free/svgs/solid/camera-retro.svg";
 
 import showMessage from "./message.js";
+import { downloadBlobToPng } from "./utils";
 
 function showHitokoto() {
     // 增加 hitokoto.cn 的 API
@@ -57,6 +59,13 @@ const tools = {
         icon: fa_info_circle,
         callback: () => {
             open("https://github.com/letere-gzj/live2d-widget-v3");
+        }
+    },
+    "photo": {
+        icon: fa_camera_retro,
+        callback: async () => {
+            showMessage("照好了嘛，是不是很可爱呢？", 6000, 9);
+            downloadBlobToPng(await window.live2d.getCanvasBlob())
         }
     },
     "quit": {

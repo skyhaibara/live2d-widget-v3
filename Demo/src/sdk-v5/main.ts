@@ -84,6 +84,13 @@ window.live2d.randomExpression = () => {
 };
 
 /**
+ * 获取canvas的Blob数据
+ */
+window.live2d.getCanvasBlob = () => {
+  return LAppDelegate.getInstance().getCanvasBlob();
+}
+
+/**
  * 释放模型
  */
 window.addEventListener(
