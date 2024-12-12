@@ -4,7 +4,7 @@
 
 ## 1 介绍
 
-+ **演示地址**：[DEMO](https://letere-gzj.github.io/live2d-v3-demo/)
++ **演示地址**：[DEMO](https://letere-gzj.github.io/live2d-widget-v3/)
 + **文章教程**：[【Hugo】博客引入moc3类型的live2d模型](https://letere-gzj.github.io/hugo-stack/p/hugo/live2d-moc3/)
 
 ![](md/png/sample.png)
