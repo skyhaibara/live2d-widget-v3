@@ -39,7 +39,7 @@
       live2dSdkPath: cdnPath + "/live2d-sdk.js"
     },
     // 工具栏
-    tools: ["hitokoto", "asteroids", "express", "switch-model", "switch-texture", "info", "quit"],
+    tools: ["hitokoto", "asteroids", "express", "switch-model", "switch-texture", "photo", "info", "quit"],
     // 模型拖拽
     drag: {
       enable: true,
@@ -152,7 +152,7 @@
 
 + **(1) 调整模型大小和位置**
   + 在模型目录下，创建`config.json`文件，并填写下面的参数，具体参考 **Resources** 目录下的模型
-  + 调整模型大小和位置，可以搭配 [DEMO](https://letere-gzj.github.io/live2d-v3-demo/) 使用
+  + 调整模型大小和位置，可以搭配 [DEMO](https://letere-gzj.github.io/live2d-widget-v3/) 使用
   + **scale**: 模型大小
   + **translate.x**：模型x轴偏移量
   + **translate.y**：模型y轴偏移量
