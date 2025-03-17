@@ -8,7 +8,32 @@
 			"秧秧.4096/texture_02.webp"
 		],
 		"Physics": "秧秧.physics3.json",
-		"DisplayInfo": "秧秧.cdi3.json"
+		"DisplayInfo": "秧秧.cdi3.json",
+		"Motions" : {
+			"TapBody": [
+				{
+					"File": "animations/Scene1.motion3.json"
+				}
+			]
+		},
+		"Expressions": [
+			{
+				"Name": "frustrated",
+				"File": "exp/悲.exp3.json"
+			},
+			{
+				"Name": "x",
+				"File": "exp/反绑x.exp3.json"
+			},
+			{
+				"Name": "black",
+				"File": "exp/脸黑.exp3.json"
+			},
+			{
+				"Name": "tear",
+				"File": "exp/眼泪.exp3.json"
+			}
+		]
 	},
 	"Groups": [
 		{
