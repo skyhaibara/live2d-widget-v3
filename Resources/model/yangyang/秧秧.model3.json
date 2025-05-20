@@ -3,9 +3,9 @@
 	"FileReferences": {
 		"Moc": "秧秧.moc3",
 		"Textures": [
-			"秧秧.4096/texture_00.webp",
-			"秧秧.4096/texture_01.webp",
-			"秧秧.4096/texture_02.webp"
+			"https://sky-haibara.oss-cn-hangzhou.aliyuncs.com/texture_00.webp",
+			"https://sky-haibara.oss-cn-hangzhou.aliyuncs.com/texture_01.webp",
+			"https://sky-haibara.oss-cn-hangzhou.aliyuncs.com/texture_02.webp"
 		],
 		"Physics": "秧秧.physics3.json",
 		"DisplayInfo": "秧秧.cdi3.json",
