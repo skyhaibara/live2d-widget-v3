@@ -3,9 +3,9 @@
 	"FileReferences": {
 		"Moc": "秧秧.moc3",
 		"Textures": [
-			"https://sky-haibara.oss-cn-hangzhou.aliyuncs.com/texture_00.webp",
-			"https://sky-haibara.oss-cn-hangzhou.aliyuncs.com/texture_01.webp",
-			"https://sky-haibara.oss-cn-hangzhou.aliyuncs.com/texture_02.webp"
+			"https://pub-fb5f542427074d66a4742ed7d0fcb694.r2.dev/live2d-widget-skyhaibara/Resources/model/yangyang/yangyang.4096/texture_00.webp",
+			"https://pub-fb5f542427074d66a4742ed7d0fcb694.r2.dev/live2d-widget-skyhaibara/Resources/model/yangyang/yangyang.4096/texture_01.webp",
+			"https://pub-fb5f542427074d66a4742ed7d0fcb694.r2.dev/live2d-widget-skyhaibara/Resources/model/yangyang/yangyang.4096/texture_02.webp"
 		],
 		"Physics": "秧秧.physics3.json",
 		"DisplayInfo": "秧秧.cdi3.json",
