@@ -1,14 +1,14 @@
 {
 	"Version": 3,
 	"FileReferences": {
-		"Moc": "秧秧.moc3",
+		"Moc": "yangyang.moc3",
 		"Textures": [
 			"https://pub-fb5f542427074d66a4742ed7d0fcb694.r2.dev/live2d-widget-skyhaibara/Resources/model/yangyang/yangyang.4096/texture_00.webp",
 			"https://pub-fb5f542427074d66a4742ed7d0fcb694.r2.dev/live2d-widget-skyhaibara/Resources/model/yangyang/yangyang.4096/texture_01.webp",
 			"https://pub-fb5f542427074d66a4742ed7d0fcb694.r2.dev/live2d-widget-skyhaibara/Resources/model/yangyang/yangyang.4096/texture_02.webp"
 		],
-		"Physics": "秧秧.physics3.json",
-		"DisplayInfo": "秧秧.cdi3.json",
+		"Physics": "yangyang.physics3.json",
+		"DisplayInfo": "yangyang.cdi3.json",
 		"Motions" : {
 			"TapBody": [
 				{
@@ -19,19 +19,19 @@
 		"Expressions": [
 			{
 				"Name": "frustrated",
-				"File": "exp/悲.exp3.json"
+				"File": "exp/frustrated.exp3.json"
 			},
 			{
 				"Name": "x",
-				"File": "exp/反绑x.exp3.json"
+				"File": "exp/x.exp3.json"
 			},
 			{
 				"Name": "black",
-				"File": "exp/脸黑.exp3.json"
+				"File": "exp/black.exp3.json"
 			},
 			{
 				"Name": "tear",
-				"File": "exp/眼泪.exp3.json"
+				"File": "exp/tear.exp3.json"
 			}
 		]
 	},
